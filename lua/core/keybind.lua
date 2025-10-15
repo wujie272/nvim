@@ -1,7 +1,10 @@
+-- 按键映射
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 --  Normal 模式下按 Ctrl-A 全选（ggVG）
 vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+-- Ctrl-S 保存
+vim.keymap.set({"n","i","v"}, "<C-s>", "<Cmd>w<CR><Esc>", { silent = true })
 
 -- Windows分屏快捷键
 __key_bind("n", "sv", "<CMD>vsp<CR>")
@@ -11,18 +14,18 @@ __key_bind("n", "sc", "<C-w>c")
 -- Close other
 __key_bind("n", "so", "<C-w>o")
 
--- Alt + hjkl jump between windows
+-- Alt + hjkl 在窗口间跳转
 __key_bind("n", "wh", "<C-w>h")
 __key_bind("n", "wj", "<C-w>j")
 __key_bind("n", "wk", "<C-w>k")
 __key_bind("n", "wl", "<C-w>l")
 
--- Left and right proportional control
+-- 左右比例控制
 __key_bind("n", "<C-Left>", "<CMD>vertical resize -2<CR>")
 __key_bind("n", "<C-Right>", "<CMD>vertical resize +2<CR>")
 __key_bind("n", "s,", "<CMD>vertical resize -2<CR>")
 __key_bind("n", "s.", "<CMD>vertical resize +2<CR>")
--- Up and down ratio
+-- 上下比率
 __key_bind("n", "sj", "<CMD>resize +2<CR>")
 __key_bind("n", "sk", "<CMD>resize -2<CR>")
 __key_bind("n", "<C-Down>", "<CMD>resize +2<CR>")
@@ -34,11 +37,11 @@ __key_bind("n", "s=", "<C-w>=")
 __key_bind("v", "<", "<gv")
 __key_bind("v", ">", ">gv")
 
--- Move selected text up and down
+-- 上下移动所选文本
 __key_bind("v", "J", "<CMD>move '>+1<CR>gv-gv")
 __key_bind("v", "K", "<CMD>move '<-2<CR>gv-gv")
 
--- Configure Copy Shortcuts
+-- 配置复制快捷方式
 __key_bind("v", "<C-c>", '"+y') -- copy
 __key_bind("v", "<C-x>", '"+d') -- cut
 -- map("n", "<C-v>", '"+p') -- paste from system clipboard

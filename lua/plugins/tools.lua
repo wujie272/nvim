@@ -1,4 +1,4 @@
--- some useful tools
+-- 一些有用的工具
 return
 --- @type LazySpec
 {
@@ -16,10 +16,6 @@ return
             { "fs", "<CMD>FloatermToggle<CR>", mode = { "n", "t" }, desc = "floaterm toggel" },
             { "fc", "<CMD>FloatermKill<CR>", mode = { "n", "t" }, desc = "floaterm kill" },
         },
-    },
-    {
-        "voldikss/vim-translator",
-        event = "VeryLazy",
     },
     {
         "chrisgrieser/nvim-early-retirement",
@@ -210,10 +206,9 @@ return
         },
         config = function()
             require("pantran").setup({
-                default_engine = "google",
+                default_engine = "argos",
                 engines = {
                    argos = {
-                        -- 安装 argos: pip install argostranslate
                        default_source = "auto",
                        default_target = "zh",
                         -- 可选：指定语言对，提高准确性
@@ -247,6 +242,7 @@ return
                         },
                     },
                 },
+                timeout=3000,
              -- 添加窗口配置
               window = {
                     border = "rounded", -- 可选: single, double, rounded, etc.
@@ -254,11 +250,6 @@ return
                     width = 0.6,
              }
          })
-
-            -- 可选：添加自定义命令
-            vim.api.nvim_create_user_command("TranslateCN", function()
-                require("pantran").motion("ip")
-            end, { desc = "快速翻译为中文" })
         end,
     }
 }
