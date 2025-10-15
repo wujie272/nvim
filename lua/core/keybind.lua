@@ -1,6 +1,23 @@
 -- 按键映射
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+vim.opt.clipboard = "unnamedplus"   -- 默认使用系统剪贴板
+
+-- termux 剪贴板
+vim.g.clipboard = {
+   name = "termux",
+   copy = {
+     ["+"] = { "termux-clipboard-set" },
+     ["*"] = { "termux-clipboard-set" },
+   },
+   paste = {
+     ["+"] = { "termux-clipboard-get" },
+     ["*"] = { "termux-clipboard-get" },
+   },
+   cache_enabled = 0,
+}
+
 --  Normal 模式下按 Ctrl-A 全选（ggVG）
 vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
 -- Ctrl-S 保存
