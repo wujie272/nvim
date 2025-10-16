@@ -3,7 +3,7 @@ return
 {
     lsp = "markdown-oxide",
     opt = {},
-    others = { "prettier" },
+    others = { "marksman" },
     before_set = nil,
     after_set = nil,
 }

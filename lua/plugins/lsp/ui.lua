@@ -7,6 +7,7 @@ return
         "j-hui/fidget.nvim",
         event = "VeryLazy",
         opts = {},
+        enabled = false,
     },
     {
         "jinzhongjia/LspUI.nvim",

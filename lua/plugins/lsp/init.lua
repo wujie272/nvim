@@ -103,7 +103,7 @@ local M = {
                 end
             end
             
-            -- 跳过 Termux 不支持的包
+            -- 跳过列表
             local skip_mason = { "lua_ls", "rust_analyzer", "clangd", "stylua", "vls", "clang-format", "markdown-oxide"}
 
             -- 过滤函数

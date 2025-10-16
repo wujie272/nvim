@@ -1,4 +1,4 @@
--- bufferline、lualine、自动调整窗口大小的设置
+-- 缓冲线靠左bufferline、lualine、自动调整窗口大小的设置
 vim.g.gitblame_display_virtual_text = 0
 
 local is_insert = false

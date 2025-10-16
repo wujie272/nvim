@@ -18,6 +18,14 @@ vim.g.clipboard = {
    cache_enabled = 0,
 }
 
+
+-- 把 gx 映射成任意 opener
+vim.keymap.set("n", "gx", function()
+ vim.fn.jobstart({"termux-open-url", vim.fn.expand("<cfile>")}, {detach = true})
+end, { desc = "Open URL under cursor" })
+
+
+
 --  Normal 模式下按 Ctrl-A 全选（ggVG）
 vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
 -- Ctrl-S 保存
