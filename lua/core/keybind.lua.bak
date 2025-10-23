@@ -1,51 +1,28 @@
-local __key_bind = vim.keymap.set
-
 -- 按键映射
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.clipboard = "unnamedplus"   -- 默认使用系统剪贴板
 
--- 判断平台
-local IS_TERMUX = vim.fn.exists("$TERMUX_VERSION") == 1
-
--- ① 剪贴板适配
-if IS_TERMUX then
-  vim.g.clipboard = {
-    name   = "termux",
-    copy   = {
-      ["+"] = { "termux-clipboard-set" },
-      ["*"] = { "termux-clipboard-set" },
-    },
-    paste  = {
-      ["+"] = { "termux-clipboard-get" },
-      ["*"] = { "termux-clipboard-get" },
-    },
-    cache_enabled = 0,
-  }
-else
-  -- PC 端直接走系统寄存器
-  vim.opt.clipboard = "unnamedplus"
-end
+-- termux 剪贴板
+vim.g.clipboard = {
+   name = "termux",
+   copy = {
+     ["+"] = { "termux-clipboard-set" },
+     ["*"] = { "termux-clipboard-set" },
+   },
+   paste = {
+     ["+"] = { "termux-clipboard-get" },
+     ["*"] = { "termux-clipboard-get" },
+   },
+   cache_enabled = 0,
+}
 
 
 -- 把 gx 映射成任意 opener
-if IS_TERMUX then
-  vim.keymap.set("n", "gx", function()
-    local url = vim.fn.expand("<cfile>")
-    vim.fn.jobstart({ "termux-open-url", url }, { detach = true })
-  end, { desc = "Open URL under cursor" })
-else
-  -- PC 端用系统默认程序
-  vim.keymap.set("n", "gx", function()
-    local url = vim.fn.expand("<cfile>")
-    if url:match("^https?://") then
-      vim.ui.open(url)          -- Neovim 0.9+ 内置
-    else
-      vim.notify("No URL under cursor", vim.log.levels.WARN)
-    end
-  end, { desc = "Open URL under cursor" })
-end
-
+vim.keymap.set("n", "gx", function()
+ vim.fn.jobstart({"termux-open-url", vim.fn.expand("<cfile>")}, {detach = true})
+end, { desc = "Open URL under cursor" })
 
 
 
@@ -109,4 +86,3 @@ __key_bind("n", "<leader>t5", "<CMD>tabn 5<CR>") -- 跳转到第 5 个 tab
 
 -- Buffer 导航快捷键已在 lua/plugins/ui.lua 中配置
 -- 使用 bn (下一个) 和 bp (上一个) 进行 buffer 切换
-
