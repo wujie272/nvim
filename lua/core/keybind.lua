@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 -- 判断平台
 local IS_TERMUX = vim.fn.exists("$TERMUX_VERSION") == 1
 
--- ① 剪贴板适配
+-- 剪贴板适配
 if IS_TERMUX then
   vim.g.clipboard = {
     name   = "termux",
@@ -41,7 +41,7 @@ else
     if url:match("^https?://") then
       vim.ui.open(url)          -- Neovim 0.9+ 内置
     else
-      vim.notify("No URL under cursor", vim.log.levels.WARN)
+      vim.notify("光标下没有URL", vim.log.levels.WARN)
     end
   end, { desc = "Open URL under cursor" })
 end

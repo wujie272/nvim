@@ -132,9 +132,11 @@ local M = {
                 ensure_installed = servers,
                 automatic_enable = false,
             })
+            
         end,
     },
 }
+
 
 -- 添加UI插件
 __arr_concat(M, require("plugins.lsp.ui"))

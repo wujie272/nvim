@@ -18,8 +18,6 @@ return {
       "mikavilpas/blink-ripgrep.nvim",
       "hrisgrieser/nvim-scissors",
       { "xzbdmw/colorful-menu.nvim", opts = {} },
-
-      -- ✅ 换成纯 Lua 版
       { "echasnovski/mini.pairs", version = "*", event = "InsertEnter", config = true },
 
       "kristijanhusak/vim-dadbod-completion",
@@ -32,7 +30,6 @@ return {
       fuzzy = { implementation = "lua" }, -- ❌ 不用 Rust
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
-        -- 其余 sources 保持你原来不动
       },
       completion = {
         accept = {
@@ -102,11 +99,8 @@ return {
         ["<C-h>"] = { "snippet_backward", "fallback" },
         ["<Tab>"] = {
           function(cmp)
-            -- 去掉 Copilot 相关，只保留 cmp + sidekick
             if cmp.is_visible() then
               return cmp.select_next()
-            elseif require("sidekick").nes_jump_or_apply() then
-              return true
             elseif cmp.snippet_active({ direction = 1 }) then
               return cmp.snippet_forward()
             end
